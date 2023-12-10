@@ -21,7 +21,7 @@ export default function Page({
 }
 
 // -------------------
-export const pagePadding = 16;
+export const pagePadding = theme.spacing.medium;
 const styles = StyleSheet.create({
   container: {
     padding: pagePadding,

@@ -1,10 +1,10 @@
 import { useRef, useState } from 'react';
 import { Camera, CameraType } from 'expo-camera';
-import BaseText from './BaseText';
-import { Dimensions, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Button from './Button';
 import Page from './Page';
 import { Video } from 'expo-av';
+import { HEIGHT, WIDTH } from '../constants/screenSize';
 
 type Props = {};
 type VideoType = { uri: string };
@@ -80,29 +80,28 @@ export default function CameraView() {
   );
 }
 
-const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {},
   camera: {
-    height,
-    width,
+    height: HEIGHT,
+    width: WIDTH,
   },
 
   videoButton: {
     position: 'absolute',
-    bottom: height * 0.1,
+    bottom: HEIGHT * 0.1,
     alignSelf: 'center',
   },
 
   flipCameraButton: {
     position: 'absolute',
-    top: height * 0.05,
-    right: width * 0.05,
+    top: HEIGHT * 0.05,
+    right: WIDTH * 0.05,
     alignSelf: 'center',
   },
 
   video: {
-    height: height * 0.8,
-    width: width * 0.8,
+    height: HEIGHT * 0.8,
+    width: WIDTH * 0.8,
   },
 });
