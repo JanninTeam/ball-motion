@@ -58,7 +58,7 @@ export default function CameraView() {
   }
 
   return (
-    <Page safeArea={false}>
+    <Page>
       {permission?.granted ? (
         <View>
           <Camera type={cameraType} style={styles.camera} ref={cameraRef} />
