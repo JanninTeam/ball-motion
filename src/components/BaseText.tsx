@@ -14,7 +14,7 @@ export default function BaseText({ children, style, ...rest }: Props) {
 // -------------------
 const styles = StyleSheet.create({
   text: {
-    // fontFamily: 'Jost-Regular',
+    fontFamily: 'Jost-Regular',
     color: theme.colors.black,
   },
 });

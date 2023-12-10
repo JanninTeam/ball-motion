@@ -29,11 +29,11 @@ const spacing = {
 };
 
 const fontStyles = {
-  h1: { fontSize: 48, fontWeight: 'bold' },
-  h2: { fontSize: 32, fontWeight: 'bold' },
-  h3: { fontSize: 24, fontWeight: 'bold' },
-  h4: { fontSize: 18, fontWeight: 'bold' },
-  h5: { fontSize: 16, fontWeight: 'bold' },
+  h1: { fontSize: 48, fontWeight: '500' },
+  h2: { fontSize: 32, fontWeight: '500' },
+  h3: { fontSize: 24, fontWeight: '500' },
+  h4: { fontSize: 18, fontWeight: '500' },
+  h5: { fontSize: 16, fontWeight: '500' },
 } as Record<string, TextStyle>;
 
 const theme = {
