@@ -1,4 +1,5 @@
 import { TextStyle } from 'react-native';
+import { WIDTH } from '../constants/screenSize';
 
 const colors = {
   white: '#ffffff',
@@ -28,6 +29,15 @@ const spacing = {
   xxlarge: 36,
 };
 
+const borderRadius = {
+  small: 6,
+  medium: 10,
+  large: 14,
+  xlarge: 18,
+
+  circle: 100_000, // Should be large enough to support any circle
+};
+
 const fontStyles = {
   h1: { fontSize: 48, fontWeight: '500' },
   h2: { fontSize: 32, fontWeight: '500' },
@@ -39,6 +49,7 @@ const fontStyles = {
 const theme = {
   colors,
   fontStyles,
+  borderRadius,
   spacing,
 };
 

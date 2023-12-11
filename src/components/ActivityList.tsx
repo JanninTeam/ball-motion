@@ -17,7 +17,7 @@ export default function ActivityList() {
 
 const styles = StyleSheet.create({
   container: {
-    gap: theme.spacing.small,
+    gap: theme.spacing.large,
     flexDirection: 'row',
   },
 });

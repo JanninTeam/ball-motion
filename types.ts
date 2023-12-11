@@ -1,4 +1,4 @@
-export type DateString = string;
+export {}; // needed to make this a module
 
 declare global {
   type Activity = {

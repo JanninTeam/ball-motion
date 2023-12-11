@@ -30,6 +30,8 @@ export default function Navigation() {
     [routes.settings]: 'gear',
   } as { [key: string]: IconNames };
 
+  const iconSize = 32;
+
   return (
     <NavigationContainer>
       <Tab.Navigator
@@ -38,7 +40,9 @@ export default function Navigation() {
           tabBarInactiveTintColor: theme.colors.black,
           tabBarShowLabel: false,
           tabBarIcon: ({ color, size }) => {
-            return <Icon name={icons[route.name]} size={size} color={color} />;
+            return (
+              <Icon name={icons[route.name]} size={iconSize} color={color} />
+            );
           },
         })}
       >

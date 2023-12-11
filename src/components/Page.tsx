@@ -21,9 +21,11 @@ export default function Page({
 }
 
 // -------------------
-export const pagePadding = theme.spacing.medium;
+export const pagePaddingHorizontal = theme.spacing.medium;
+export const pagePaddingVertical = theme.spacing.medium;
 const styles = StyleSheet.create({
   container: {
-    padding: pagePadding,
+    paddingHorizontal: pagePaddingHorizontal,
+    paddingVertical: pagePaddingVertical,
   },
 });

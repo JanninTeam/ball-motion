@@ -5,9 +5,8 @@ import { formatDate } from '../util/formatDate';
 import DefaultImage from './FallbackImage';
 import { getThumbnail } from '../util/getThumbnail';
 import { WIDTH } from '../constants/screenSize';
-import { pagePadding } from './Page';
+import { pagePaddingHorizontal } from './Page';
 import { getHexOpacity } from '../util/getHexOpacity';
-import { previousRuns } from '../../sampleData/previousRuns';
 
 type Props = {
   activity: Activity;
@@ -18,7 +17,7 @@ export default function ActivityThumbnail({ activity }: Props) {
   const thumbnail = getThumbnail(activity.videoUri);
 
   // You should be able to see the first thumbnail and a little bit of the second thumbnail
-  const width = (WIDTH - pagePadding) * 0.7;
+  const width = (WIDTH - pagePaddingHorizontal) * 0.7;
   const height = (width / 16) * 9;
 
   // Uses values calculated above so we can use them in the styles
@@ -46,7 +45,11 @@ export default function ActivityThumbnail({ activity }: Props) {
 }
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    borderTopLeftRadius: theme.borderRadius.large,
+    borderTopRightRadius: theme.borderRadius.large,
+  },
+
   coverTextWrapper: {
     position: 'absolute',
     flexDirection: 'column',
