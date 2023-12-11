@@ -17,6 +17,10 @@
      1. Install the Expo Go app on your device
      2. Scan the QR code in the terminal which executed `npm start`
 
+## Testing the program
+
+The program uses the jest testing library and can be tested by running `npm test` in the terminal. This will run all the tests in the `__tests__` directory.
+
 ## Contributing
 
 To contribute to this project, please follow the steps below:
