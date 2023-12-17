@@ -5,4 +5,7 @@ export const routes = {
   newActivity: 'New Activity',
   settings: 'Settings',
   allRuns: 'AllRuns',
+  analytics: "Analytics",
+  achievements: "Achievements",
+  newProfile: "NewProfile",
 };

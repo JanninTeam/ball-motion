@@ -14,6 +14,9 @@ import SettingsPage from './pages/SettingsPage';
 import NewActivityPage from './pages/NewActivityPage';
 import PreviousRunsPage from './pages/PreviousRunsPage';
 import { routes } from './Routes';
+import AnalyticsPage from './pages/AnalyticsPage';
+import NewProfilePage from './pages/NewProfilePage';
+import AchievementsPage from './pages/AchievementsPage';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -34,6 +37,38 @@ function DashboardStack() {
         name={routes.allRuns}
         component={PreviousRunsPage}
         options={{ title: 'All Runs' }}
+      />
+      <Stack.Screen
+        name={routes.analytics}
+        component={AnalyticsPage}
+        options={{ title: 'Analytics' }}
+      />
+      <Stack.Screen
+        name={routes.newActivity}
+        component={NewProfilePage}
+        options={{ title: 'New Profile' }}
+      />
+      <Stack.Screen
+        name={routes.achievements}
+        component={AchievementsPage}
+        options={{ title: 'Achievements' }}
+      />
+    </Stack.Navigator>
+  );
+}
+
+function ActivityStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name={routes.newActivity}
+        component={NewActivityPage}
+        options={{ title: 'New Activity' }}
+      />
+      <Stack.Screen
+        name={routes.analytics}
+        component={AnalyticsPage}
+        options={{ title: 'Analytics' }}
       />
     </Stack.Navigator>
   );
@@ -63,7 +98,7 @@ function TabNavigator() {
       })}
     >
       <Tab.Screen name={routes.dashboard} component={DashboardStack} options={options} />
-      <Tab.Screen name={routes.newActivity} component={NewActivityPage} options={options} />
+      <Tab.Screen name={routes.newActivity} component={ActivityStack} options={options} />
       <Tab.Screen name={routes.settings} component={SettingsPage} options={options} />
     </Tab.Navigator>
   );
