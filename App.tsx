@@ -1,5 +1,5 @@
 import { useFonts } from 'expo-font';
-import Navigation from './src/Navigation';
+import AppNavigator from './src/Navigation';
 import LoadingPage from './src/pages/LoadingPage';
 
 export default function App() {
@@ -10,5 +10,5 @@ export default function App() {
   });
 
   if (!fontsLoaded) return <LoadingPage />;
-  return <Navigation />;
+  return <AppNavigator />;
 }

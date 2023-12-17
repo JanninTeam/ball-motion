@@ -1,5 +1,6 @@
 import { TextStyle } from 'react-native';
 import { WIDTH } from '../constants/screenSize';
+import { StyleSheet } from 'react-native';
 
 const colors = {
   white: '#ffffff',
@@ -52,5 +53,27 @@ const theme = {
   borderRadius,
   spacing,
 };
+
+// Common styles such as centering, flexing, etc.
+export const globalStyles = StyleSheet.create({
+  justifyCenter: {
+    justifyContent: 'center',
+  },
+
+  alignCenter: {
+    alignItems: 'center',
+  },
+
+  center: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  marginSmall: { margin: spacing.small },
+  marginMedium: { margin: spacing.medium },
+  marginLarge: { margin: spacing.large },
+  marginXlarge: { margin: spacing.xlarge },
+  marginXxlarge: { margin: spacing.xxlarge },
+});
 
 export default theme;

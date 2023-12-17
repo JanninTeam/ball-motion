@@ -1,4 +1,4 @@
-import { StyleSheet, TextStyle, View } from 'react-native';
+import { StyleSheet, TextStyle, View, Image } from 'react-native';
 import theme from '../globals/globalStyles';
 import BaseText from './BaseText';
 import { formatDate } from '../util/formatDate';
@@ -14,6 +14,7 @@ type Props = {
 
 export default function ActivityThumbnail({ activity }: Props) {
   const { username, date, speed } = activity;
+  // const thumbnail = activity.thumbnail ?? getThumbnail(activity.videoUri);
   const thumbnail = getThumbnail(activity.videoUri);
 
   // You should be able to see the first thumbnail and a little bit of the second thumbnail

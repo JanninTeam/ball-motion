@@ -15,7 +15,13 @@ export default function FallbackImage(props: Props) {
           source={require('../../assets/images/fallback.png')}
         />
       ) : (
-        <Image {...props} onError={() => setError(true)} />
+        <Image
+          {...props}
+          onError={(e) => {
+            console.log('Image error:', e);
+            setError(true);
+          }}
+        />
       )}
     </>
   );
