@@ -1,10 +1,25 @@
 import { Text, TextProps, StyleSheet } from 'react-native';
 import theme from '../globals/globalStyles';
 
-type Props = TextProps & {};
-export default function BaseText({ children, style, ...rest }: Props) {
+type FontFamily =
+  | 'Jost-Regular'
+  | 'Jost-Bold'
+  | 'Jost-SemiBold'
+  | 'Jost-Medium'
+  | 'Jost-Light'
+  | 'Jost-Thin'
+  | undefined;
+type Props = TextProps & {
+  fontFamily?: FontFamily;
+};
+export default function BaseText({
+  children,
+  style,
+  fontFamily = 'Jost-Regular',
+  ...rest
+}: Props) {
   return (
-    <Text {...rest} style={[styles.text, style]}>
+    <Text {...rest} style={[styles.text, { fontFamily }, style]}>
       {children}
     </Text>
   );
@@ -13,7 +28,6 @@ export default function BaseText({ children, style, ...rest }: Props) {
 // -------------------
 const styles = StyleSheet.create({
   text: {
-    fontFamily: 'Jost-Regular',
     color: theme.colors.black,
   },
 });
