@@ -1,5 +1,11 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, View, ViewStyle } from 'react-native';
+import {
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  View,
+  ViewStyle,
+} from 'react-native';
 import theme from '../globals/globalStyles';
 import { NavigationProp } from '@react-navigation/native';
 import BackButton, { BackButtonProps } from './BackButton';
@@ -18,6 +24,7 @@ type OptionalBackButton =
 
 type Props = {
   children?: React.ReactNode;
+  scrollView?: boolean;
   safeArea?: boolean;
   backgroundColor?: string;
 } & OptionalBackButton;
@@ -25,6 +32,7 @@ type Props = {
 export default function Page({
   children,
   safeArea = true,
+  scrollView = true,
   backgroundColor = theme.colors.white,
   backButton,
   backButtonProps,
@@ -37,12 +45,18 @@ export default function Page({
     <BackButton {...backButtonProps} navigation={navigation} />
   ) : null;
 
+  const childElement = scrollView ? (
+    <ScrollView>{children}</ScrollView>
+  ) : (
+    children
+  );
+
   if (safeArea) {
     return (
       <SafeAreaView style={style}>
         <>
           {backButtonElement}
-          {children}
+          {childElement}
         </>
       </SafeAreaView>
     );
@@ -53,7 +67,7 @@ export default function Page({
     <View style={style}>
       <>
         {backButtonElement}
-        {children}
+        {childElement}
       </>
     </View>
   );

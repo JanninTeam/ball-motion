@@ -4,6 +4,7 @@ import { StyleSheet } from 'react-native';
 
 const colors = {
   white: '#ffffff',
+  gray: '#f5f5f5',
   black: '#000000',
   primary: '#3f51b5',
   secondary: '#f50057',

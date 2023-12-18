@@ -5,14 +5,12 @@ import Page from '../components/Page';
 
 type Props = {};
 
-const AchievementsPage = (props: Props) => {
+export default function AchievementsPage(props: Props) {
   return (
     <Page>
       <BaseText>AchievementsPage</BaseText>
     </Page>
   );
-};
-
-export default AchievementsPage;
+}
 
 const styles = StyleSheet.create({});

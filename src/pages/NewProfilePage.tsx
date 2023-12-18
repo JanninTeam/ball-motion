@@ -5,14 +5,12 @@ import Page from '../components/Page';
 
 type Props = {};
 
-const NewProfilePage = (props: Props) => {
+export default function NewProfilePage(props: Props) {
   return (
     <Page>
       <BaseText>NewProfilePage</BaseText>
     </Page>
   );
-};
-
-export default NewProfilePage;
+}
 
 const styles = StyleSheet.create({});

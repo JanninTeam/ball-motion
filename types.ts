@@ -9,10 +9,13 @@ declare global {
     videoUri: string;
   };
 
-  type Achievement = {
+  type AchievementType = {
     id: string;
     title: string;
     description: string;
     icon: string;
-  } & ({ completed: true; dateCompleted: number } | { completed: false });
+  } & (
+    | { completed: true; dateCompleted: number }
+    | { completed: false; dateCompleted?: never }
+  );
 }

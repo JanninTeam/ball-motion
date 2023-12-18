@@ -5,14 +5,12 @@ import Page from '../components/Page';
 
 type Props = {};
 
-const AnalyticsPage = (props: Props) => {
+export default function AnalyticsPage(props: Props) {
   return (
     <Page>
       <BaseText>AnalyticsPage</BaseText>
     </Page>
   );
-};
-
-export default AnalyticsPage;
+}
 
 const styles = StyleSheet.create({});
