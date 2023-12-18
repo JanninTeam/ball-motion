@@ -18,7 +18,7 @@ export default function Achievement({
     <View style={styles.container}>
       <BaseText style={{ fontSize: iconSize }}>{icon}</BaseText>
       <View>
-        <Title type="h3" center={false}>
+        <Title type="h4" center={false}>
           {title}
         </Title>
         <BaseText>{description}</BaseText>

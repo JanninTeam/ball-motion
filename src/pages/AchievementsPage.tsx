@@ -1,16 +1,27 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import BaseText from '../components/BaseText';
 import Page from '../components/Page';
+import { achievements } from '../common/achievements';
+import Achievement from '../components/Achievement';
+import theme from '../globals/globalStyles';
 
 type Props = {};
 
 export default function AchievementsPage(props: Props) {
   return (
     <Page>
-      <BaseText>AchievementsPage</BaseText>
+      <View style={styles.container}>
+        {achievements.map((achievement) => (
+          <Achievement key={achievement.id} {...achievement} />
+        ))}
+      </View>
     </Page>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    gap: theme.spacing.medium,
+  },
+});
