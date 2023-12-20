@@ -18,4 +18,10 @@ declare global {
     | { completed: true; dateCompleted: number }
     | { completed: false; dateCompleted?: never }
   );
+
+  type User = {
+    id: string;
+    username: string;
+    achievementIds: string[]; // achievement ids
+  };
 }

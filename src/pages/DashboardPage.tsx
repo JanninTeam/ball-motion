@@ -9,6 +9,13 @@ import ActivityThumbnail from '../components/ActivityThumbnail';
 import { previousRuns } from '../../sampleData/previousRuns';
 import { achievements } from '../common/achievements';
 import Achievement from '../components/Achievement';
+import { useState } from 'react';
+import BaseText from '../components/BaseText';
+import Modal from 'react-native-modal';
+import { HEIGHT, WIDTH } from '../constants/screenSize';
+import BaseModal from '../components/BaseModal';
+import { users } from '../../sampleData/userData';
+import Icon from '../components/Icon';
 
 function ActivityList() {
   return (
@@ -40,31 +47,59 @@ function AchievementList() {
 
 type Props = { navigation: NavigationProp<any> };
 export default function DashboardPage({ navigation }: Props) {
+  const [userModalOpen, setUserModalOpen] = useState(false);
+
   return (
-    <Page>
-      <Title style={styles.sectionTitle}>Dashboard</Title>
+    <>
+      <Page>
+        <Title style={styles.sectionTitle}>Dashboard</Title>
 
-      <Title type="h3" style={styles.sectionTitle}>
-        Recent
-      </Title>
-      <ActivityList />
-      <Button
-        text="View All Runs"
-        onPress={() => navigation.navigate(routes.allRuns)}
-        containerStyle={styles.button}
-      />
+        <Title type="h3" style={styles.sectionTitle}>
+          Recent
+        </Title>
+        <ActivityList />
+        <Button
+          text="View All Runs"
+          onPress={() => navigation.navigate(routes.allRuns)}
+          containerStyle={styles.button}
+        />
 
-      <Title type="h3" style={styles.sectionTitle}>
-        Achievements
-      </Title>
-      <AchievementList />
+        <Title type="h3" style={styles.sectionTitle}>
+          Achievements
+        </Title>
+        <AchievementList />
 
-      <Button
-        text="View All Achievements"
-        onPress={() => navigation.navigate(routes.achievements)}
-        containerStyle={styles.button}
-      />
-    </Page>
+        <Button
+          text="View All Achievements"
+          onPress={() => navigation.navigate(routes.achievements)}
+          containerStyle={styles.button}
+        />
+
+        <Button text="Switch Users" onPress={() => setUserModalOpen(true)} />
+      </Page>
+
+      <BaseModal
+        isVisible={userModalOpen}
+        onDismiss={() => setUserModalOpen(false)}
+        position="bottom"
+      >
+        <Title type="h3">Select User</Title>
+        <ScrollView horizontal>
+          <View style={styles.userContainer}>
+            {users.map((user) => (
+              <View style={styles.user} key={user.id}>
+                <Icon name="person" size={50} />
+                <BaseText>{user.username}</BaseText>
+              </View>
+            ))}
+            <View style={styles.user}>
+              <Icon name="plus1" size={50} />
+              <BaseText>Add User</BaseText>
+            </View>
+          </View>
+        </ScrollView>
+      </BaseModal>
+    </>
   );
 }
 
@@ -88,5 +123,20 @@ const styles = StyleSheet.create({
   achievementContainer: {
     gap: theme.spacing.medium,
     flexDirection: 'column',
+  },
+
+  user: {
+    backgroundColor: theme.colors.white,
+    borderRadius: theme.borderRadius.medium,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: theme.spacing.medium,
+  },
+
+  userContainer: {
+    gap: theme.spacing.medium,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
