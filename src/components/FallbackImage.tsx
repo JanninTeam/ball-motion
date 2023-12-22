@@ -18,7 +18,7 @@ export default function FallbackImage(props: Props) {
         <Image
           {...props}
           onError={(e) => {
-            console.log('Image error:', e);
+            // console.log('Image error:', e);
             setError(true);
           }}
         />

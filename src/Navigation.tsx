@@ -44,7 +44,7 @@ function DashboardStack() {
         options={{ title: 'Analytics' }}
       />
       <Stack.Screen
-        name={routes.newActivity}
+        name={routes.newProfile}
         component={NewProfilePage}
         options={{ title: 'New Profile' }}
       />
@@ -78,7 +78,7 @@ function TabNavigator() {
   const iconSize = 32;
   const icons = {
     [routes.dashboard]: 'house',
-    [routes.newActivity]: 'plus',
+    [routes.newActivityPage]: 'plus',
     [routes.settings]: 'gear',
   } as { [key: string]: IconNames };
 
@@ -98,7 +98,7 @@ function TabNavigator() {
       })}
     >
       <Tab.Screen name={routes.dashboard} component={DashboardStack} options={options} />
-      <Tab.Screen name={routes.newActivity} component={ActivityStack} options={options} />
+      <Tab.Screen name={routes.newActivityPage} component={ActivityStack} options={options} />
       <Tab.Screen name={routes.settings} component={SettingsPage} options={options} />
     </Tab.Navigator>
   );

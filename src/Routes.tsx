@@ -3,9 +3,10 @@ export const routes = {
   home: 'Home',
   dashboard: 'Dashboard',
   newActivity: 'New Activity',
+  newActivityPage: 'NewActivityPage',
   settings: 'Settings',
   allRuns: 'AllRuns',
-  analytics: "Analytics",
-  achievements: "Achievements",
-  newProfile: "NewProfile",
+  analytics: 'Analytics',
+  achievements: 'Achievements',
+  newProfile: 'NewProfile',
 };
