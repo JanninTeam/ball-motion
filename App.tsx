@@ -1,6 +1,7 @@
 import { useFonts } from 'expo-font';
 import AppNavigator from './src/Navigation';
 import LoadingPage from './src/pages/LoadingPage';
+import { StatusBar } from 'react-native';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -10,5 +11,10 @@ export default function App() {
   });
 
   if (!fontsLoaded) return <LoadingPage />;
-  return <AppNavigator />;
+  return (
+    <>
+      <StatusBar />
+      <AppNavigator />
+    </>
+  );
 }
