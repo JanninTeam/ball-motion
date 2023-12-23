@@ -53,11 +53,11 @@ export default function Page({
 
   if (safeArea) {
     return (
-      <SafeAreaView style={style}>
-        <>
+      <SafeAreaView>
+        <View style={style}>
           {backButtonElement}
           {childElement}
-        </>
+        </View>
       </SafeAreaView>
     );
   }
