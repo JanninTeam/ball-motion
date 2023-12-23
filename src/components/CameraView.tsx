@@ -1,10 +1,38 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Camera, CameraType } from 'expo-camera';
 import { StyleSheet, View } from 'react-native';
 import Button from './Button';
 import Page from './Page';
 import { Video } from 'expo-av';
 import { HEIGHT, WIDTH } from '../constants/screenSize';
+import theme from '../globals/globalStyles';
+import { getHexOpacity } from '../util/getHexOpacity';
+import BaseText from './BaseText';
+import ballTracker from '../util/ballTracker';
+import Icon from './Icon';
+
+type RecordButtonProps = {
+  recording: boolean;
+  startRecording: () => void;
+  stopRecording: () => void;
+};
+
+function RecordButton({
+  recording,
+  startRecording,
+  stopRecording,
+}: RecordButtonProps) {
+  return (
+    <Button
+      text=""
+      containerStyle={[
+        styles.videoButton,
+        recording ? { backgroundColor: theme.colors.red } : {},
+      ]}
+      onPress={recording ? stopRecording : startRecording}
+    />
+  );
+}
 
 type Props = {};
 type VideoType = { uri: string };
@@ -58,25 +86,35 @@ export default function CameraView() {
   }
 
   return (
-    <Page>
+    <>
       {permission?.granted ? (
         <View>
           <Camera type={cameraType} style={styles.camera} ref={cameraRef} />
           <Button
             onPress={toggleCameraType}
-            text="Flip camera"
+            text=""
             containerStyle={styles.flipCameraButton}
+            icon={<Icon name="camera-flip" size={24} color="white" />}
           />
-          <Button
-            text={recording ? 'Stop recording' : 'Start recording'}
-            containerStyle={styles.videoButton}
-            onPress={recording ? stopRecording : startRecording}
+          <View
+            style={[
+              styles.recordingWrapper,
+              recording ? styles.recordingWrapperRecording : {},
+            ]}
+          >
+            <BaseText>{recording ? 'Recording' : 'Not Recording'}</BaseText>
+          </View>
+
+          <RecordButton
+            recording={recording}
+            startRecording={startRecording}
+            stopRecording={stopRecording}
           />
         </View>
       ) : (
         <Button onPress={requestPermission} text="Request permission" />
       )}
-    </Page>
+    </>
   );
 }
 
@@ -91,11 +129,16 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: HEIGHT * 0.1,
     alignSelf: 'center',
+    height: HEIGHT * 0.1,
+    width: HEIGHT * 0.1,
+    borderRadius: HEIGHT * 0.05,
+    borderColor: theme.colors.white,
+    borderWidth: 5,
   },
 
   flipCameraButton: {
     position: 'absolute',
-    top: HEIGHT * 0.05,
+    top: HEIGHT * 0.1,
     right: WIDTH * 0.05,
     alignSelf: 'center',
   },
@@ -103,5 +146,18 @@ const styles = StyleSheet.create({
   video: {
     height: HEIGHT * 0.8,
     width: WIDTH * 0.8,
+  },
+
+  recordingWrapper: {
+    position: 'absolute',
+    top: HEIGHT * 0.1,
+    alignSelf: 'center',
+    backgroundColor: theme.colors.gray + getHexOpacity(0.5),
+    padding: theme.spacing.small,
+    borderRadius: theme.spacing.small,
+  },
+
+  recordingWrapperRecording: {
+    backgroundColor: theme.colors.red + getHexOpacity(0.5),
   },
 });

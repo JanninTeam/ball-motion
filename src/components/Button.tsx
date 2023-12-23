@@ -14,7 +14,7 @@ type OptionalPressProps =
   | { onPress?: () => void; onPressIn?: () => void; onPressOut: () => void };
 
 type Props = {
-  containerStyle?: ViewStyle;
+  containerStyle?: ViewStyle | ViewStyle[];
   textStyle?: TextStyle;
   text: string;
   icon?: JSX.Element;
