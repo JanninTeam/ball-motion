@@ -17,6 +17,7 @@ import { routes } from './Routes';
 import AnalyticsPage from './pages/AnalyticsPage';
 import NewProfilePage from './pages/NewProfilePage';
 import AchievementsPage from './pages/AchievementsPage';
+import CameraView from './components/CameraView';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -112,6 +113,13 @@ export default function AppNavigator() {
           name={routes.home}
           component={TabNavigator}
           options={options}
+        />
+        <Stack.Screen
+          name={routes.cameraView}
+          component={CameraView}
+          options={{
+            headerShown: false,
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>

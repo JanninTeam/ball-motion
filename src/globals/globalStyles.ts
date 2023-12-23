@@ -9,6 +9,7 @@ const colors = {
   primary: '#3f51b5',
   secondary: '#f50057',
   error: '#f44336',
+  red: '#f44336',
 };
 
 // const themes = {

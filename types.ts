@@ -24,4 +24,6 @@ declare global {
     username: string;
     achievementIds: string[]; // achievement ids
   };
+
+  type SetState<T> = React.Dispatch<React.SetStateAction<T>>;
 }

@@ -9,4 +9,5 @@ export const routes = {
   analytics: 'Analytics',
   achievements: 'Achievements',
   newProfile: 'NewProfile',
+  cameraView: 'CameraView',
 };
