@@ -18,6 +18,7 @@ import AnalyticsPage from './pages/AnalyticsPage';
 import NewProfilePage from './pages/NewProfilePage';
 import AchievementsPage from './pages/AchievementsPage';
 import CameraView from './components/CameraView';
+import { HEIGHT } from './constants/screenSize';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -94,7 +95,7 @@ function TabNavigator() {
       screenOptions={({ route }) => ({
         tabBarActiveTintColor: theme.colors.primary,
         tabBarInactiveTintColor: theme.colors.black,
-        tabBarStyle: { height: 64, borderTopWidth: 1 },
+        tabBarStyle: { height: HEIGHT * 0.1, borderTopWidth: 1 },
         tabBarIcon: ({ color }) => getIcon(route, color),
       })}
     >
