@@ -3,16 +3,17 @@ import { StatusBar } from 'react-native';
 import AppNavigator from './src/Navigation';
 import LoadingPage from './src/pages/LoadingPage';
 import { createContext, useState } from 'react';
+import { Settings, SettingsType } from './src/globals/settings';
 
-type Settings = any; // TODO: Add type
-export const SettingsContext = createContext({
-  units: 'metric',
-  settings: {},
-  setSettings: (settings: Settings) => {},
-});
+type TSettingsContext = {
+  settings: SettingsType;
+  setSettings: SetState<SettingsType>;
+};
+
+export const SettingsContext = createContext({} as TSettingsContext);
 
 export default function App() {
-  const [settings, setSettings] = useState<Settings>({});
+  const [settings, setSettings] = useState(Settings);
 
   const [fontsLoaded] = useFonts({
     'Jost-Regular': require('./assets/fonts/Jost-Regular.ttf'),
@@ -24,9 +25,7 @@ export default function App() {
 
   return (
     <>
-      <SettingsContext.Provider
-        value={{ settings, setSettings, units: 'metric' }}
-      >
+      <SettingsContext.Provider value={{ settings, setSettings }}>
         <StatusBar />
         <AppNavigator />
       </SettingsContext.Provider>
