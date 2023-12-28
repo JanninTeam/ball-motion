@@ -3,8 +3,9 @@ import { SettingsContext } from '../../App';
 import BaseText from '../components/BaseText';
 import Page from '../components/Page';
 import Title from '../components/Title';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Switch } from 'react-native';
 import Button from '../components/Button';
+import ToggleSwitch from '../components/ToggleSwitch';
 
 export default function SettingsPage() {
   const { settings, setSettings } = useContext(SettingsContext);
@@ -18,40 +19,32 @@ export default function SettingsPage() {
     });
   };
 
-  const toggleDarkMode = () => {
-    setSettings((prev) => {
-      return { ...prev, darkMode: !prev.darkMode };
-    });
+  const toggleOption = (option: keyof typeof settings) => {
+    setSettings((prev) => ({ ...prev, [option]: !prev[option] }));
   };
 
-  const toggleNotifications = () => {
-    setSettings((prev) => {
-      return { ...prev, notificationsEnabled: !prev.notificationsEnabled };
-    });
-  };
+  const toggleDarkMode = () => toggleOption('darkMode');
+  const toggleNotifications = () => toggleOption('notificationsEnabled');
 
   return (
     <Page>
       <Title>Settings</Title>
       <View style={styles.container}>
-        <BaseText>Units (Metric or Imperial)</BaseText>
         <Button
           onPress={changeUnits}
           text={settings.units === 'metric' ? 'Imperial' : 'Metric'}
         />
 
-        {/* These are likely to be toggles: */}
-        <Button
-          onPress={toggleDarkMode}
-          text={settings.darkMode ? 'Light Mode' : 'Dark Mode'}
+        <ToggleSwitch
+          value={settings.darkMode}
+          onValueChange={toggleDarkMode}
+          label="Dark Mode"
         />
-        <Button
-          onPress={toggleNotifications}
-          text={
-            settings.notificationsEnabled
-              ? 'Disable Notifications'
-              : 'Enable Notifications'
-          }
+
+        <ToggleSwitch
+          value={settings.notificationsEnabled}
+          onValueChange={toggleNotifications}
+          label="Notifications"
         />
       </View>
     </Page>
