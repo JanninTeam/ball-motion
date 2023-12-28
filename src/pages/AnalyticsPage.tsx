@@ -1,10 +1,11 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Button, StyleSheet, View } from 'react-native';
 import BaseText from '../components/BaseText';
 import Page from '../components/Page';
 import { frameData } from '../../sampleData/frameData';
 import { NavigationProp } from '@react-navigation/native';
 import { getAnalytics } from '../util/getAnalytics';
+import { routes } from '../Routes';
 
 type AnalyticsTextProps = {
   analyticName: string;
@@ -55,6 +56,10 @@ export default function AnalyticsPage(props: Props) {
           value={value}
         />
       ))}
+      <Button
+        onPress={() => props.navigation.navigate(routes.newActivity)}
+        title="New Run"
+      />
     </Page>
   );
 }

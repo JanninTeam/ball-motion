@@ -20,11 +20,7 @@ export default function NewActivityPage({ navigation }: Props) {
       />
 
       <Button
-        onPress={() =>
-          navigation.navigate(routes.analytics, {
-            id: '1',
-          })
-        }
+        onPress={() => navigation.navigate(routes.analytics, { id: '1' })}
         text="Test Value"
       />
     </Page>
