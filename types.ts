@@ -25,5 +25,24 @@ declare global {
     achievementIds: string[]; // achievement ids
   };
 
+  type ErrorType = {
+    title: string;
+    description: string;
+  };
+
+  type Analytics = {
+    maxSpeed: number;
+    totalDistanceInAir: number;
+    potentialDistance: number;
+    timeInAir: number;
+    potentialTimeInAir: number;
+  };
+
+  type FrameData = {
+    speed: number;
+    direction: number;
+  };
+
+  // Commonly used types
   type SetState<T> = React.Dispatch<React.SetStateAction<T>>;
 }

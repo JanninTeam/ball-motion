@@ -42,6 +42,7 @@ function DashboardStack() {
       />
       <Stack.Screen
         name={routes.analytics}
+        // @ts-ignore
         component={AnalyticsPage}
         options={{ title: 'Analytics' }}
       />
@@ -69,6 +70,7 @@ function ActivityStack() {
       />
       <Stack.Screen
         name={routes.analytics}
+        // @ts-ignore
         component={AnalyticsPage}
         options={{ title: 'Analytics' }}
       />

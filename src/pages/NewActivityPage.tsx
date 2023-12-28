@@ -18,6 +18,11 @@ export default function NewActivityPage({ navigation }: Props) {
         onPress={() => navigation.navigate(routes.cameraView)}
         text="Start"
       />
+
+      <Button
+        onPress={() => navigation.navigate(routes.analytics, { id: '1' })}
+        text="Test Value"
+      />
     </Page>
   );
 }
