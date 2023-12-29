@@ -3,12 +3,11 @@ import { StatusBar } from 'react-native';
 import AppNavigator from './src/Navigation';
 import LoadingPage from './src/pages/LoadingPage';
 import { createContext, useState } from 'react';
-import { Settings, SettingsType } from './src/globals/settings';
-
-type TSettingsContext = {
-  settings: SettingsType;
-  setSettings: SetState<SettingsType>;
-};
+import {
+  Settings,
+  SettingsType,
+  TSettingsContext,
+} from './src/globals/settings';
 
 export const SettingsContext = createContext({} as TSettingsContext);
 

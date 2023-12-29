@@ -58,13 +58,8 @@ const theme = {
 
 // Common styles such as centering, flexing, etc.
 export const globalStyles = StyleSheet.create({
-  justifyCenter: {
-    justifyContent: 'center',
-  },
-
-  alignCenter: {
-    alignItems: 'center',
-  },
+  justifyCenter: { justifyContent: 'center' },
+  alignCenter: { alignItems: 'center' },
 
   center: {
     justifyContent: 'center',
@@ -76,6 +71,8 @@ export const globalStyles = StyleSheet.create({
   marginLarge: { margin: spacing.large },
   marginXlarge: { margin: spacing.xlarge },
   marginXxlarge: { margin: spacing.xxlarge },
+
+  capitalize: { textTransform: 'capitalize' },
 });
 
 export default theme;

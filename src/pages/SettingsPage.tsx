@@ -1,28 +1,27 @@
 import { useContext } from 'react';
+import { StyleSheet, View } from 'react-native';
 import { SettingsContext } from '../../App';
-import BaseText from '../components/BaseText';
 import Page from '../components/Page';
 import Title from '../components/Title';
-import { View, StyleSheet, Switch } from 'react-native';
-import Button from '../components/Button';
 import ToggleSwitch from '../components/ToggleSwitch';
+import theme from '../globals/globalStyles';
+import { NavigationProp } from '@react-navigation/native';
+import Button from '../components/Button';
+import { routes } from '../Routes';
 
-export default function SettingsPage() {
+type Props = {
+  navigation: NavigationProp<any>;
+};
+
+export default function SettingsPage({ navigation }: Props) {
   const { settings, setSettings } = useContext(SettingsContext);
 
-  const changeUnits = () => {
-    setSettings((prev) => {
-      return {
-        ...prev,
-        units: prev.units === 'metric' ? 'imperial' : 'metric',
-      };
-    });
-  };
-
+  // Generic function to toggle a setting
   const toggleOption = (option: keyof typeof settings) => {
     setSettings((prev) => ({ ...prev, [option]: !prev[option] }));
   };
 
+  // Toggle functions
   const toggleDarkMode = () => toggleOption('darkMode');
   const toggleNotifications = () => toggleOption('notificationsEnabled');
 
@@ -31,10 +30,9 @@ export default function SettingsPage() {
       <Title>Settings</Title>
       <View style={styles.container}>
         <Button
-          onPress={changeUnits}
-          text={settings.units === 'metric' ? 'Imperial' : 'Metric'}
+          text="Change Unit Settings"
+          onPress={() => navigation.navigate(routes.unitSettings)}
         />
-
         <ToggleSwitch
           value={settings.darkMode}
           onValueChange={toggleDarkMode}
@@ -52,9 +50,5 @@ export default function SettingsPage() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  container: {},
 });
