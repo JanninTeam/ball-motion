@@ -1,5 +1,7 @@
 # Ball Motion (Name TBD)
 
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/JanninTeam/ball-motion/test.yml?branch=master)](https://github.com/JanninTeam/ball-motion/actions) [![Codecov](https://img.shields.io/codecov/c/github/JanninTeam/ball-motion)](https://codecov.io/gh/JanninTeam/ball-motion) ![Last Commit](https://img.shields.io/github/last-commit/JanninTeam/ball-motion) ![License](https://img.shields.io/github/license/JanninTeam/ball-motion)
+
 ## Running the program
 
 1. Clone the repository `git clone https://github.com/JanninTeam/ball-motion.git`
