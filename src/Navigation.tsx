@@ -19,6 +19,7 @@ import NewProfilePage from './pages/NewProfilePage';
 import AchievementsPage from './pages/AchievementsPage';
 import CameraView from './components/CameraView';
 import { HEIGHT } from './constants/screenSize';
+import UnitSettingsPage from './pages/UnitSettingsPage';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -78,6 +79,23 @@ function ActivityStack() {
   );
 }
 
+function SettingsStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name={routes.settingsPage}
+        component={SettingsPage}
+        options={{ title: 'Settings' }}
+      />
+      <Stack.Screen
+        name={routes.unitSettings}
+        component={UnitSettingsPage}
+        options={{ title: 'Unit Settings' }}
+      />
+    </Stack.Navigator>
+  );
+}
+
 function TabNavigator() {
   const iconSize = 32;
   const icons = {
@@ -103,7 +121,7 @@ function TabNavigator() {
     >
       <Tab.Screen name={routes.dashboard} component={DashboardStack} options={options} />
       <Tab.Screen name={routes.newActivityPage} component={ActivityStack} options={options} />
-      <Tab.Screen name={routes.settings} component={SettingsPage} options={options} />
+      <Tab.Screen name={routes.settings} component={SettingsStack} options={options} />
     </Tab.Navigator>
   );
 }

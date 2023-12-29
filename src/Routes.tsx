@@ -5,6 +5,8 @@ export const routes = {
   newActivity: 'New Activity',
   newActivityPage: 'NewActivityPage',
   settings: 'Settings',
+  settingsPage: 'SettingsPage',
+  unitSettings: 'UnitSettings',
   allRuns: 'AllRuns',
   analytics: 'Analytics',
   achievements: 'Achievements',
