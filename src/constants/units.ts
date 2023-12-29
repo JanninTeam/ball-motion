@@ -12,10 +12,9 @@ export type Speed = (typeof SPEEDS)[number];
 export type Distance = (typeof DISTANCES)[number];
 export type Sport = (typeof SPORTS)[number];
 
-export type UnitEnum = 'speed' | 'distance';
 export type UnitType = Speed | Distance;
 export type Unit = Record<Sport, { speed: Speed; distance: Distance }>;
-export type NewUnit = { speed: Speed } | { distance: Distance };
+export type UnitEnum = 'distance' | 'speed';
 
 export const unitPresets = {
   imperial: {
@@ -33,4 +32,6 @@ export const unitPresets = {
     tennis: { speed: 'kph', distance: 'meters' },
     soccer: { speed: 'kph', distance: 'meters' },
   },
-};
+} as Record<'imperial' | 'metric', Unit>;
+
+export type UnitPresets = keyof typeof unitPresets;

@@ -3,23 +3,25 @@ import { StyleSheet, View } from 'react-native';
 import { SettingsContext } from '../../App';
 import BaseText from '../components/BaseText';
 import Button from '../components/Button';
+import Page from '../components/Page';
 import Title from '../components/Title';
 import {
   DISTANCES,
   Distance,
-  NewUnit,
   SPEEDS,
   SPORTS,
   Speed,
   Sport,
   UnitEnum,
+  UnitPresets,
   UnitType,
   unitPresets,
 } from '../constants/units';
 import theme from '../globals/globalStyles';
-import Page from '../components/Page';
 import { SettingsType } from '../globals/settings';
 
+type NewUnit = { speed: Speed } | { distance: Distance };
+type UnitButtonProps = { unitType: UnitEnum; units: UnitType[] };
 type SportSectionProps = {
   settings: SettingsType;
   setSettings: SetState<SettingsType>;
@@ -36,27 +38,37 @@ function SportSection({ settings, setSettings, sport }: SportSectionProps) {
     });
   };
 
-  type UnitButtonProps = { unitType: UnitEnum; units: UnitType[] };
   const UnitButton = ({ unitType, units }: UnitButtonProps) => {
     const isSelected = (val: UnitType) => {
       return settings.units[sport][unitType] === val;
     };
 
+    const getSelectedStyle = (unit: UnitType) => {
+      if (!isSelected(unit)) return {};
+
+      return {
+        containerStyle: styles.selectedUnit,
+        textStyle: styles.selectedUnitText,
+      };
+    };
+
     return (
-      <>
+      <View style={styles.unit}>
         <Title type="h3">{unitType}</Title>
-        {units.map((unit) => {
-          return (
-            <Button
-              key={unit}
-              // @ts-ignore
-              onPress={() => updateSportUnit(sport, { [unitType]: unit })}
-              text={unit}
-              containerStyle={isSelected(unit) ? styles.selectedUnit : {}}
-            />
-          );
-        })}
-      </>
+        <View style={styles.unitWrapper}>
+          {units.map((unit) => {
+            return (
+              <Button
+                key={unit}
+                text={unit}
+                // @ts-ignore TODO: Fix this
+                onPress={() => updateSportUnit(sport, { [unitType]: unit })}
+                {...getSelectedStyle(unit)}
+              />
+            );
+          })}
+        </View>
+      </View>
     );
   };
 
@@ -75,7 +87,7 @@ export default function UnitSettingsPage() {
   const { settings, setSettings } = useContext(SettingsContext);
 
   // Sets the units to a preset (metric or imperial)
-  const setUnitPreset = (preset: keyof typeof unitPresets) => {
+  const setUnitPreset = (preset: UnitPresets) => {
     setSettings((prev) => ({ ...prev, units: unitPresets[preset] }));
   };
 
@@ -91,8 +103,14 @@ export default function UnitSettingsPage() {
   };
 
   const unitPreset = getCurrentPreset();
-  const getSelectedStyle = (preset: keyof typeof unitPresets | 'custom') => {
-    return preset === unitPreset ? styles.selectedUnit : {};
+  const getSelectedStyle = (preset: UnitPresets | 'custom') => {
+    if (preset !== unitPreset) return {};
+
+    if (preset === 'custom') return { style: styles.selectedUnitText };
+    return {
+      containerStyhle: styles.selectedUnit,
+      textStyle: styles.selectedUnitText,
+    };
   };
 
   return (
@@ -104,17 +122,15 @@ export default function UnitSettingsPage() {
           Presets
         </Title>
         <View style={styles.unitWrapper}>
-          {Object.keys(unitPresets).map((preset) => (
+          {Object.keys(unitPresets).map((presetName) => (
             <Button
-              key={preset}
-              onPress={() => setUnitPreset(preset as keyof typeof unitPresets)}
-              text={preset}
-              containerStyle={getSelectedStyle(
-                preset as keyof typeof unitPresets
-              )}
+              key={presetName}
+              text={presetName}
+              onPress={() => setUnitPreset(presetName as UnitPresets)}
+              {...getSelectedStyle(presetName as UnitPresets)}
             />
           ))}
-          <BaseText style={getSelectedStyle('custom')}>Custom</BaseText>
+          <BaseText {...getSelectedStyle('custom')}>Custom</BaseText>
         </View>
 
         {SPORTS.map((sport) => (
@@ -134,7 +150,15 @@ const styles = StyleSheet.create({
   container: {},
 
   selectedUnit: {
-    backgroundColor: theme.colors.gray,
+    // backgroundColor: theme.colors.white,
+    // fontWeight: 'bold',
+  },
+
+  unit: {
+    marginBottom: theme.spacing.medium,
+  },
+
+  selectedUnitText: {
     fontWeight: 'bold',
   },
 
@@ -147,8 +171,10 @@ const styles = StyleSheet.create({
   },
 
   sportContainer: {
-    marginBottom: theme.spacing.large,
-    borderBottomWidth: 1,
     borderColor: theme.colors.gray,
+    margin: theme.spacing.medium,
+    padding: theme.spacing.medium,
+    borderRadius: theme.borderRadius.medium,
+    backgroundColor: theme.colors.gray,
   },
 });
