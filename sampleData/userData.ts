@@ -2,11 +2,18 @@ export const users: User[] = [
   {
     id: '1',
     username: 'johndoe',
-    achievementIds: ['1', '2'],
+    completedAchievements: [
+      { id: '1', dateCompleted: 1610000000000 },
+      { id: '2', dateCompleted: 1610000000000 },
+    ],
   },
   {
     id: '2',
     username: 'janedoe',
-    achievementIds: ['1', '2'],
+    completedAchievements: [
+      { id: '1', dateCompleted: 1610000000000 },
+      { id: '2', dateCompleted: 1610000000000 },
+      { id: '3', dateCompleted: 1610000000000 },
+    ],
   },
 ];

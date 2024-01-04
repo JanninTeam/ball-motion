@@ -14,15 +14,12 @@ declare global {
     title: string;
     description: string;
     icon: string;
-  } & (
-    | { completed: true; dateCompleted: number }
-    | { completed: false; dateCompleted?: never }
-  );
+  };
 
   type User = {
     id: string;
     username: string;
-    achievementIds: string[]; // achievement ids
+    completedAchievements: { id: string; dateCompleted: number }[];
   };
 
   type ErrorType = {

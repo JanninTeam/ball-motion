@@ -9,13 +9,15 @@ import ActivityThumbnail from '../components/ActivityThumbnail';
 import { previousRuns } from '../../sampleData/previousRuns';
 import { achievements } from '../common/achievements';
 import Achievement from '../components/Achievement';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import BaseText from '../components/BaseText';
 import Modal from 'react-native-modal';
 import { HEIGHT, WIDTH } from '../constants/screenSize';
 import BaseModal from '../components/BaseModal';
 import { users } from '../../sampleData/userData';
 import Icon from '../components/Icon';
+import { UserContext } from '../../App';
+import { getTopAchievements } from '../util/getTopAchievements';
 
 function ActivityList() {
   return (
@@ -29,15 +31,15 @@ function ActivityList() {
   );
 }
 
-function AchievementList() {
-  // TODO: When we have users and user data, we can just take the top 3 completed achievements
-  // For now we will create a list of the first 3 achievements
-  const data = achievements.slice(0, 3);
+type AchievementProps = { user: User | null };
+
+function AchievementList({ user }: AchievementProps) {
+  const achievementData = getTopAchievements(user, 1, 3);
 
   return (
     <ScrollView>
       <View style={styles.achievementContainer}>
-        {data.map((achievement) => (
+        {achievementData.map((achievement) => (
           <Achievement key={achievement.id} {...achievement} />
         ))}
       </View>
@@ -48,6 +50,7 @@ function AchievementList() {
 type Props = { navigation: NavigationProp<any> };
 export default function DashboardPage({ navigation }: Props) {
   const [userModalOpen, setUserModalOpen] = useState(false);
+  const { user } = useContext(UserContext);
 
   return (
     <>
@@ -67,7 +70,8 @@ export default function DashboardPage({ navigation }: Props) {
         <Title type="h3" style={styles.sectionTitle}>
           Achievements
         </Title>
-        <AchievementList />
+
+        <AchievementList user={user} />
 
         <Button
           text="View All Achievements"
@@ -75,6 +79,7 @@ export default function DashboardPage({ navigation }: Props) {
           containerStyle={styles.button}
         />
 
+        <BaseText>Current User: {user?.username ?? 'None'}</BaseText>
         <Button text="Switch Users" onPress={() => setUserModalOpen(true)} />
       </Page>
 

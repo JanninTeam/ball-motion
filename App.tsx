@@ -3,15 +3,15 @@ import { StatusBar } from 'react-native';
 import AppNavigator from './src/Navigation';
 import LoadingPage from './src/pages/LoadingPage';
 import { createContext, useState } from 'react';
-import {
-  Settings,
-  SettingsType,
-  TSettingsContext,
-} from './src/globals/settings';
+import { Settings, TSettingsContext } from './src/globals/settings';
+import { users } from './sampleData/userData';
 
+type TUserContext = { user: User | null; setUser: SetState<User | null> };
 export const SettingsContext = createContext({} as TSettingsContext);
+export const UserContext = createContext({} as TUserContext);
 
 export default function App() {
+  const [user, setUser] = useState<User | null>(users[0]);
   const [settings, setSettings] = useState(Settings);
 
   const [fontsLoaded] = useFonts({
@@ -25,8 +25,10 @@ export default function App() {
   return (
     <>
       <SettingsContext.Provider value={{ settings, setSettings }}>
-        <StatusBar />
-        <AppNavigator />
+        <UserContext.Provider value={{ user, setUser }}>
+          <StatusBar />
+          <AppNavigator />
+        </UserContext.Provider>
       </SettingsContext.Provider>
     </>
   );
