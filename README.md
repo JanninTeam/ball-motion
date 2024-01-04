@@ -10,12 +10,21 @@
 4. Run the program `npm start`
 
 5. Running on a mobile device
-   - Emulator:
+
+   - Emulator (Android Studio):
+
      1. Install Android Studio
      2. Create a virtual device
      3. Run the virtual device
      4. Run the program by pressing `a` on your keyboard in the terminal which executed `npm start`
+
+   - Emulator (Xcode MacOs only):
+
+     1. Install Xcode
+     2. Run the program by pressing `i` on your keyboard in the terminal which executed `npm start`
+
    - Physical device:
+
      1. Install the Expo Go app on your device
      2. Scan the QR code in the terminal which executed `npm start`
 
