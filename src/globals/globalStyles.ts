@@ -1,5 +1,4 @@
 import { TextStyle } from 'react-native';
-import { WIDTH } from '../constants/screenSize';
 import { StyleSheet } from 'react-native';
 
 const colors = {
@@ -10,6 +9,7 @@ const colors = {
   secondary: '#f50057',
   error: '#f44336',
   red: '#f44336',
+  success: '##c4ffc4',
 };
 
 // const themes = {
