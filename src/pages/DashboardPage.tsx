@@ -34,7 +34,7 @@ function ActivityList() {
 type AchievementProps = { user: User | null };
 
 function AchievementList({ user }: AchievementProps) {
-  const achievementData = getTopAchievements(user, 1, 3);
+  const achievementData = getTopAchievements(user);
 
   return (
     <ScrollView>

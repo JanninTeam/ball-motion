@@ -9,19 +9,23 @@ import { achievementMap, achievements } from '../common/achievements';
 export function getTopAchievements(
   user: User | null,
   completedCount = 1,
-  limit = 3
+  limit = 3,
+  ignoreWarnings = false
 ) {
   if (limit > achievements.length) {
-    console.warn(
-      `The limit of ${limit} is greater than the number of achievements (${achievements.length})`
-    );
-    limit = achievements.length - 1;
+    if (!ignoreWarnings)
+      console.warn(
+        `The limit of ${limit} is greater than the number of achievements (${achievements.length})`
+      );
+    limit = achievements.length;
   }
 
   if (completedCount > limit) {
-    console.warn(
-      `The completedCount of ${completedCount} is greater than the limit of ${limit}`
-    );
+    if (!ignoreWarnings)
+      console.warn(
+        `The completedCount of ${completedCount} is greater than the limit of ${limit}`
+      );
+
     completedCount = limit;
   }
 
@@ -35,7 +39,7 @@ export function getTopAchievements(
 
   // Get the top achievements
   const getTopAchievements = sortedAchievements?.slice(0, completedCount);
-  const achievementData =
+  const achievementData: AchievementType[] =
     getTopAchievements?.map((achievement) => {
       const achievementInfo = achievementMap[achievement.id];
       return {
@@ -44,24 +48,29 @@ export function getTopAchievements(
       };
     }) ?? [];
 
-  const length = achievementData?.length || 0;
+  let currentIndex = 0;
+  const incompleteAchievements = [];
+  const completedLength = achievementData.length;
+  const max = limit - completedLength;
 
-  // If the user has less than limit achievements, fill the rest with the first achievements
-  for (let i = length; i < limit; i++) {
+  while (incompleteAchievements.length < max) {
     const alreadyCompleted = achievementData.some(
-      (achievement) => achievement.id === achievements[i].id
+      (achievement) => achievement.id === achievements[currentIndex].id
     );
 
     // If you have already completed the achievement, skip it
     if (alreadyCompleted) {
-      limit++;
+      currentIndex++;
       continue;
     }
 
-    // Add the achievement to the front of the array
-    const achievementInfo = achievementMap[achievements[i].id];
-    achievementData.unshift({ ...achievementInfo, dateCompleted: 0 });
+    const achievementInfo = achievementMap[achievements[currentIndex].id];
+    incompleteAchievements.push(achievementInfo);
+
+    currentIndex++;
   }
+
+  achievementData.unshift(...incompleteAchievements);
 
   return achievementData;
 }

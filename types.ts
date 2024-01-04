@@ -14,6 +14,7 @@ declare global {
     title: string;
     description: string;
     icon: string;
+    dateCompleted?: number;
   };
 
   type User = {
