@@ -1,6 +1,13 @@
 import { Distance, Speed, Sport, Unit, UnitEnum } from '../constants/units';
 import { SettingsType } from '../globals/settings';
 
+/*
+ * value: number - the value to convert
+ * settings: SettingsType - the user's settings
+ * sport: Sport - the sport to convert for (e.g. 'baseball')
+ * unitType: UnitEnum - the type of unit to convert ('speed' or 'distance')
+ */
+
 type Props = {
   value: number;
   settings: SettingsType;
