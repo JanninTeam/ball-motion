@@ -1,3 +1,5 @@
+import { Sport } from './src/constants/units';
+
 export {}; // needed to make this a module
 
 declare global {
@@ -7,6 +9,7 @@ declare global {
     speed: number;
     username: string;
     videoUri: string;
+    sport: Sport;
   };
 
   type AchievementType = {
