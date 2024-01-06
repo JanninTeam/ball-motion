@@ -6,22 +6,11 @@ import theme from '../globals/globalStyles';
 import { formatDate } from '../util/formatDate';
 import { SettingsContext } from '../../App';
 import { useContext } from 'react';
-import getConvertedUnits from '../util/getConvertedUnits';
+import getConvertedUnits, { getUnitsText } from '../util/getConvertedUnits';
 import { Sport } from '../constants/units';
 
 export default function PreviousRunsPage() {
   const { settings } = useContext(SettingsContext);
-
-  const getValue = (run: Activity) => {
-    const { value, unit } = getConvertedUnits({
-      value: run.speed,
-      settings,
-      sport: run.sport,
-      unitType: 'speed', // TODO: Add distance
-    });
-
-    return `${value.toFixed(1)} ${unit}`;
-  };
 
   return (
     <Page>
@@ -30,7 +19,7 @@ export default function PreviousRunsPage() {
           <View key={run.id} style={styles.run}>
             <BaseText>{run.username}</BaseText>
             <BaseText>{run.sport}</BaseText>
-            <BaseText>{getValue(run)}</BaseText>
+            <BaseText>{getUnitsText(run, settings)}</BaseText>
             <BaseText>{formatDate(run.date)}</BaseText>
           </View>
         ))}

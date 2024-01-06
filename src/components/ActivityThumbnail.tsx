@@ -7,6 +7,9 @@ import { getThumbnail } from '../util/getThumbnail';
 import { WIDTH } from '../constants/screenSize';
 import { pagePaddingHorizontal } from './Page';
 import { getHexOpacity } from '../util/getHexOpacity';
+import getConvertedUnits, { getUnitsText } from '../util/getConvertedUnits';
+import { useContext } from 'react';
+import { SettingsContext } from '../../App';
 
 type Props = {
   activity: Activity;
@@ -15,6 +18,8 @@ type Props = {
 const width = (WIDTH - pagePaddingHorizontal) * 0.7;
 const height = (width / 16) * 9;
 export default function ActivityThumbnail({ activity }: Props) {
+  const { settings } = useContext(SettingsContext);
+
   const { username, date, speed } = activity;
   // const thumbnail = activity.thumbnail ?? getThumbnail(activity.videoUri);
   const thumbnail = getThumbnail(activity.videoUri);
@@ -28,7 +33,7 @@ export default function ActivityThumbnail({ activity }: Props) {
         <BaseText style={styles.usernameText}>{username}</BaseText>
         <View style={styles.speedWrapper}>
           <BaseText style={styles.speedText} fontFamily="Jost-SemiBold">
-            {speed.toFixed(1)}m/s
+            {getUnitsText(activity, settings)}
           </BaseText>
         </View>
       </View>

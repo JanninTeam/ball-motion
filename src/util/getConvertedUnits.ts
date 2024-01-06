@@ -53,3 +53,14 @@ export default function getConvertedUnits({
     unit: targetUnit,
   };
 }
+
+export function getUnitsText(activity: Activity, settings: SettingsType) {
+  const { value, unit } = getConvertedUnits({
+    value: activity.speed,
+    settings,
+    sport: activity.sport,
+    unitType: 'speed', // TODO: Add distance
+  });
+
+  return `${value.toFixed(1)} ${unit}`;
+}
