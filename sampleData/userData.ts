@@ -1,3 +1,5 @@
+import { Settings } from '../src/globals/settings';
+
 export const users: User[] = [
   {
     id: '1',
@@ -6,6 +8,8 @@ export const users: User[] = [
       { id: '1', dateCompleted: 1610000000000 },
       { id: '2', dateCompleted: 1610000000000 },
     ],
+
+    prefferedSettings: Settings,
   },
   {
     id: '2',
@@ -15,5 +19,7 @@ export const users: User[] = [
       { id: '2', dateCompleted: 1610000000000 },
       { id: '3', dateCompleted: 1610000000000 },
     ],
+
+    prefferedSettings: Settings,
   },
 ];

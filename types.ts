@@ -1,4 +1,5 @@
 import { Sport } from './src/constants/units';
+import { SettingsType } from './src/globals/settings';
 
 export {}; // needed to make this a module
 
@@ -24,6 +25,7 @@ declare global {
     id: string;
     username: string;
     completedAchievements: { id: string; dateCompleted: number }[];
+    prefferedSettings: SettingsType;
   };
 
   type ErrorType = {

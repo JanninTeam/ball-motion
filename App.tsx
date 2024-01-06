@@ -2,7 +2,7 @@ import { useFonts } from 'expo-font';
 import { StatusBar } from 'react-native';
 import AppNavigator from './src/Navigation';
 import LoadingPage from './src/pages/LoadingPage';
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import { Settings, TSettingsContext } from './src/globals/settings';
 import { users } from './sampleData/userData';
 
@@ -13,6 +13,18 @@ export const UserContext = createContext({} as TUserContext);
 export default function App() {
   const [user, setUser] = useState<User | null>(users[0]);
   const [settings, setSettings] = useState(Settings);
+
+  useEffect(() => {
+    if (!user) return;
+
+    setSettings(() => user.prefferedSettings);
+  }, [user]);
+
+  // TODO: Have this in Realm or something
+  useEffect(() => {
+    if (!user) return;
+    user.prefferedSettings = settings;
+  }, [settings]);
 
   const [fontsLoaded] = useFonts({
     'Jost-Regular': require('./assets/fonts/Jost-Regular.ttf'),
