@@ -1,22 +1,19 @@
+import { NavigationProp } from '@react-navigation/native';
+import { useContext, useState } from 'react';
+import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { UserContext } from '../../App';
+import { previousRuns } from '../../sampleData/previousRuns';
+import { users } from '../../sampleData/userData';
+import { routes } from '../Routes';
+import Achievement from '../components/Achievement';
+import ActivityThumbnail from '../components/ActivityThumbnail';
+import BaseModal from '../components/BaseModal';
+import BaseText from '../components/BaseText';
+import Button from '../components/Button';
+import Icon from '../components/Icon';
 import Page from '../components/Page';
 import Title from '../components/Title';
-import { ScrollView, StyleSheet, View } from 'react-native';
 import theme from '../globals/globalStyles';
-import Button from '../components/Button';
-import { NavigationProp } from '@react-navigation/native';
-import { routes } from '../Routes';
-import ActivityThumbnail from '../components/ActivityThumbnail';
-import { previousRuns } from '../../sampleData/previousRuns';
-import { achievements } from '../common/achievements';
-import Achievement from '../components/Achievement';
-import { useContext, useState } from 'react';
-import BaseText from '../components/BaseText';
-import Modal from 'react-native-modal';
-import { HEIGHT, WIDTH } from '../constants/screenSize';
-import BaseModal from '../components/BaseModal';
-import { users } from '../../sampleData/userData';
-import Icon from '../components/Icon';
-import { UserContext } from '../../App';
 import { getTopAchievements } from '../util/getTopAchievements';
 
 function ActivityList() {
@@ -50,7 +47,7 @@ function AchievementList({ user }: AchievementProps) {
 type Props = { navigation: NavigationProp<any> };
 export default function DashboardPage({ navigation }: Props) {
   const [userModalOpen, setUserModalOpen] = useState(false);
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
 
   return (
     <>
@@ -92,10 +89,17 @@ export default function DashboardPage({ navigation }: Props) {
         <ScrollView horizontal>
           <View style={styles.userContainer}>
             {users.map((user) => (
-              <View style={styles.user} key={user.id}>
+              <TouchableOpacity
+                style={styles.user}
+                key={user.id}
+                onPress={() => {
+                  setUserModalOpen(false);
+                  setUser(user);
+                }}
+              >
                 <Icon name="person" size={50} />
                 <BaseText>{user.username}</BaseText>
-              </View>
+              </TouchableOpacity>
             ))}
             <View style={styles.user}>
               <Icon name="plus1" size={50} />
