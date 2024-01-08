@@ -1,5 +1,5 @@
 import { NavigationProp } from '@react-navigation/native';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { UserContext } from '../../App';
 import { previousRuns } from '../../sampleData/previousRuns';
@@ -15,6 +15,7 @@ import Page from '../components/Page';
 import Title from '../components/Title';
 import theme from '../globals/globalStyles';
 import { getTopAchievements } from '../util/getTopAchievements';
+import { APIResponse } from '../../types';
 
 function ActivityList() {
   return (
@@ -46,6 +47,16 @@ function AchievementList({ user }: AchievementProps) {
 
 type Props = { navigation: NavigationProp<any> };
 export default function DashboardPage({ navigation }: Props) {
+  useEffect(() => {
+    const get = async () => {
+      const response = await fetch('http://10.0.2.2:5000/test');
+      const data = (await response.json()) as APIResponse['Test'];
+      console.log(data.message);
+    };
+
+    get();
+  }, []);
+
   const [userModalOpen, setUserModalOpen] = useState(false);
   const { user, setUser } = useContext(UserContext);
 

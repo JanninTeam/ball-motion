@@ -2,14 +2,16 @@ import { useEffect, useRef, useState } from 'react';
 import { Camera, CameraType } from 'expo-camera';
 import { StyleSheet, View } from 'react-native';
 import Button from './Button';
-import Page from './Page';
 import { Video } from 'expo-av';
 import { HEIGHT, WIDTH } from '../constants/screenSize';
 import theme from '../globals/globalStyles';
 import { getHexOpacity } from '../util/getHexOpacity';
 import BaseText from './BaseText';
-import ballTracker from '../util/ballTracker';
 import Icon from './Icon';
+import { fetchServer } from '../common/fetchServer';
+import { APIResponse } from '../../types';
+import * as FileSystem from 'expo-file-system';
+import { uploadVideoFile } from '../common/saveFile';
 
 type RecordButtonProps = {
   recording: boolean;
@@ -69,17 +71,24 @@ export default function CameraView() {
 
   // Video functions
   const discardVideo = () => setVideo(null);
+  // const uploadVideo = async () => {
+  //   if (!video) return;
+
+  //   const result = (await fetchServer('process_video', 'POST', {
+  //     video: video.uri,
+  //   })) as APIResponse['ProcessVideo'];
+
+  //   console.log({ result });
+  // };
+
+  useEffect(() => {
+    if (video) uploadVideoFile(video.uri);
+  }, [video]);
 
   if (video) {
     return (
       <>
-        <Video
-          style={styles.video}
-          source={video}
-          isLooping
-          shouldPlay
-          useNativeControls={false}
-        />
+        <Video source={video} style={styles.video} shouldPlay isLooping />
         <Button onPress={discardVideo} text="Discard video" />
       </>
     );

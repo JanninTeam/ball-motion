@@ -5,6 +5,7 @@ import LoadingPage from './src/pages/LoadingPage';
 import { createContext, useEffect, useState } from 'react';
 import { Settings, TSettingsContext } from './src/globals/settings';
 import { users } from './sampleData/userData';
+import WarningPage from './src/pages/WarningPage';
 
 type TUserContext = { user: User | null; setUser: SetState<User | null> };
 export const SettingsContext = createContext({} as TSettingsContext);
@@ -32,7 +33,21 @@ export default function App() {
     'Jost-Bold': require('./assets/fonts/Jost-Bold.ttf'),
   });
 
+  const hasServerIp = process.env.EXPO_PUBLIC_SERVER_URL !== undefined;
+  const [showWarning, setShowWarning] = useState(!hasServerIp);
+
   if (!fontsLoaded) return <LoadingPage />;
+
+  if (showWarning) {
+    return (
+      <WarningPage
+        message="No server IP set in .env file."
+        fix="Set the EXPO_PUBLIC_SERVER_URL variable in the .env file to the IP address of your system."
+        visible={true}
+        setVisible={setShowWarning}
+      />
+    );
+  }
 
   return (
     <>

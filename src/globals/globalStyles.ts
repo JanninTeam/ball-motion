@@ -9,7 +9,8 @@ const colors = {
   secondary: '#f50057',
   error: '#f44336',
   red: '#f44336',
-  success: '##c4ffc4',
+  success: '#c4ffc4',
+  warning: '#ffeb3b',
 };
 
 // const themes = {

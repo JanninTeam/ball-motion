@@ -25,6 +25,7 @@ type OptionalBackButton =
 type Props = {
   children?: React.ReactNode;
   scrollView?: boolean;
+  noPadding?: boolean;
   safeArea?: boolean;
   backgroundColor?: string;
 } & OptionalBackButton;
@@ -33,13 +34,22 @@ export default function Page({
   children,
   safeArea = true,
   scrollView = true,
+  noPadding = false,
   backgroundColor = theme.colors.white,
   backButton,
   backButtonProps,
   navigation,
 }: Props) {
+  const paddingStyle = noPadding
+    ? { paddingHorizontal: 0, paddingVertical: 0 }
+    : {};
+
   // Combine the backgroundColor prop with the default styles
-  const style = { ...styles.container, backgroundColor } as ViewStyle;
+  const style = {
+    ...styles.container,
+    backgroundColor,
+    ...paddingStyle,
+  } as ViewStyle;
 
   const backButtonElement = backButton ? (
     <BackButton {...backButtonProps} navigation={navigation} />
