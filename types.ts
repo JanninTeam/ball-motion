@@ -49,3 +49,14 @@ declare global {
   // Commonly used types
   type SetState<T> = React.Dispatch<React.SetStateAction<T>>;
 }
+
+export type APIResponse = {
+  Test: { message: string };
+  ProcessVideo:
+    | {
+        frame_count: number;
+      }
+    | {
+        error: string;
+      };
+};
