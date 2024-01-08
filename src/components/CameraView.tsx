@@ -12,6 +12,7 @@ import { fetchServer } from '../common/fetchServer';
 import { APIResponse } from '../../types';
 import * as FileSystem from 'expo-file-system';
 import { uploadVideoFile } from '../common/saveFile';
+import Page from './Page';
 
 type RecordButtonProps = {
   recording: boolean;
@@ -121,7 +122,11 @@ export default function CameraView() {
           />
         </View>
       ) : (
-        <Button onPress={requestPermission} text="Request permission" />
+        <Page>
+          <View style={styles.requestPermissionWrapper}>
+            <Button onPress={requestPermission} text="Request permission" />
+          </View>
+        </Page>
       )}
     </>
   );
@@ -168,5 +173,13 @@ const styles = StyleSheet.create({
 
   recordingWrapperRecording: {
     backgroundColor: theme.colors.red + getHexOpacity(0.5),
+  },
+
+  requestPermissionWrapper: {
+    height: HEIGHT * 0.8,
+    width: WIDTH * 0.8,
+    alignSelf: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
