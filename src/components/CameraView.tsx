@@ -13,6 +13,7 @@ import { APIResponse } from '../../types';
 import * as FileSystem from 'expo-file-system';
 import { uploadVideoFile } from '../common/saveFile';
 import Page from './Page';
+import AnalyzeVideo from './AnalyzeVideo';
 
 type RecordButtonProps = {
   recording: boolean;
@@ -72,27 +73,15 @@ export default function CameraView() {
 
   // Video functions
   const discardVideo = () => setVideo(null);
-  // const uploadVideo = async () => {
-  //   if (!video) return;
-
-  //   const result = (await fetchServer('process_video', 'POST', {
-  //     video: video.uri,
-  //   })) as APIResponse['ProcessVideo'];
-
-  //   console.log({ result });
-  // };
-
-  useEffect(() => {
-    if (video) uploadVideoFile(video.uri);
-  }, [video]);
 
   if (video) {
-    return (
-      <>
-        <Video source={video} style={styles.video} shouldPlay isLooping />
-        <Button onPress={discardVideo} text="Discard video" />
-      </>
-    );
+    return <AnalyzeVideo video={video} />;
+    // return (
+    //   <>
+    //     <Video source={video} style={styles.video} shouldPlay isLooping />
+    //     <Button onPress={discardVideo} text="Discard video" />
+    //   </>
+    // );
   }
 
   return (

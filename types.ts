@@ -48,6 +48,7 @@ declare global {
 
   // Commonly used types
   type SetState<T> = React.Dispatch<React.SetStateAction<T>>;
+  type Ref<T> = React.MutableRefObject<T>;
 }
 
 export type APIResponse = {
