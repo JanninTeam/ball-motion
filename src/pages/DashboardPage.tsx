@@ -1,7 +1,6 @@
 import { NavigationProp } from '@react-navigation/native';
 import { useContext, useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, TouchableOpacity, View } from 'react-native';
-import { UserContext } from '../../App';
 import { previousRuns } from '../../sampleData/previousRuns';
 import { users } from '../../sampleData/userData';
 import { routes } from '../Routes';
@@ -16,6 +15,7 @@ import Title from '../components/Title';
 import theme from '../globals/globalStyles';
 import { getTopAchievements } from '../util/getTopAchievements';
 import { APIResponse } from '../../types';
+import { UserContext } from '../context/userContext';
 
 function ActivityList() {
   return (

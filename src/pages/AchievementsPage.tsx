@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { achievements } from '../common/achievements';
+import { achievements } from '../data/achievements';
 import Achievement from '../components/Achievement';
 import Page from '../components/Page';
 import theme from '../globals/globalStyles';
-import { UserContext } from '../../App';
+import { UserContext } from '../context/userContext';
 
 type Props = {};
 export default function AchievementsPage(props: Props) {

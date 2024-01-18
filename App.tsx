@@ -2,14 +2,12 @@ import { useFonts } from 'expo-font';
 import { StatusBar } from 'react-native';
 import AppNavigator from './src/Navigation';
 import LoadingPage from './src/pages/LoadingPage';
-import { createContext, useEffect, useState } from 'react';
-import { Settings, TSettingsContext } from './src/globals/settings';
+import { useEffect, useState } from 'react';
+import { Settings } from './src/globals/settings';
 import { users } from './sampleData/userData';
 import WarningPage from './src/pages/WarningPage';
-
-type TUserContext = { user: User | null; setUser: SetState<User | null> };
-export const SettingsContext = createContext({} as TSettingsContext);
-export const UserContext = createContext({} as TUserContext);
+import { SettingsContext } from './src/context/settingsContext';
+import { UserContext } from './src/context/userContext';
 
 export default function App() {
   const [user, setUser] = useState<User | null>(users[0]);

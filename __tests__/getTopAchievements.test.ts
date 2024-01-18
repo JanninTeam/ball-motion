@@ -1,4 +1,5 @@
-import { achievementMap, achievements } from '../src/common/achievements';
+import { achievementMap, achievements } from '../src/data/achievements';
+import { SettingsType } from '../src/globals/settings';
 import { getTopAchievements } from '../src/util/getTopAchievements';
 import { describe, expect, it } from '@jest/globals';
 
@@ -12,6 +13,8 @@ const demoUser: User = {
     { id: achievements[3].id, dateCompleted: 4 },
     { id: achievements[4].id, dateCompleted: 5 },
   ],
+
+  prefferedSettings: {} as SettingsType,
 };
 
 describe('getTopAchievements', () => {
