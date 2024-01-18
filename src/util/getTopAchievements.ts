@@ -1,4 +1,4 @@
-import { achievementMap, achievements } from '../common/achievements';
+import { achievementMap, achievements } from '../data/achievements';
 
 /*
  * user: The user to get the achievements for

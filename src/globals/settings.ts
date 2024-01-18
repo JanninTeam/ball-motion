@@ -10,8 +10,3 @@ export const Settings = {
 };
 
 export type SettingsType = typeof Settings;
-
-export type TSettingsContext = {
-  settings: SettingsType;
-  setSettings: SetState<SettingsType>;
-};

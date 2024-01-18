@@ -1,6 +1,5 @@
 import { useContext } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { SettingsContext } from '../../App';
 import BaseText from '../components/BaseText';
 import Button from '../components/Button';
 import Page from '../components/Page';
@@ -19,6 +18,7 @@ import {
 } from '../constants/units';
 import theme from '../globals/globalStyles';
 import { SettingsType } from '../globals/settings';
+import { SettingsContext } from '../context/settingsContext';
 
 type NewUnit = { speed: Speed } | { distance: Distance };
 type UnitButtonProps = { unitType: UnitEnum; units: UnitType[] };

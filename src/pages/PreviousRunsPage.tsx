@@ -4,10 +4,10 @@ import { previousRuns } from '../../sampleData/previousRuns';
 import BaseText from '../components/BaseText';
 import theme from '../globals/globalStyles';
 import { formatDate } from '../util/formatDate';
-import { SettingsContext } from '../../App';
 import { useContext } from 'react';
 import getConvertedUnits, { getUnitsText } from '../util/getConvertedUnits';
 import { Sport } from '../constants/units';
+import { SettingsContext } from '../context/settingsContext';
 
 export default function PreviousRunsPage() {
   const { settings } = useContext(SettingsContext);

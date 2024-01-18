@@ -9,7 +9,7 @@ import { pagePaddingHorizontal } from './Page';
 import { getHexOpacity } from '../util/getHexOpacity';
 import getConvertedUnits, { getUnitsText } from '../util/getConvertedUnits';
 import { useContext } from 'react';
-import { SettingsContext } from '../../App';
+import { SettingsContext } from '../context/settingsContext';
 
 type Props = {
   activity: Activity;
