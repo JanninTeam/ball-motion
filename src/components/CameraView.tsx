@@ -72,15 +72,6 @@ export default function CameraView() {
 
   // Video functions
   const discardVideo = () => setVideo(null);
-  // const uploadVideo = async () => {
-  //   if (!video) return;
-
-  //   const result = (await fetchServer('process_video', 'POST', {
-  //     video: video.uri,
-  //   })) as APIResponse['ProcessVideo'];
-
-  //   console.log({ result });
-  // };
 
   useEffect(() => {
     if (video) uploadVideoFile(video.uri);
