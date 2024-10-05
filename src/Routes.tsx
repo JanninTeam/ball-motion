@@ -12,4 +12,5 @@ export const routes = {
   achievements: 'Achievements',
   newProfile: 'NewProfile',
   cameraView: 'CameraView',
+  statsPage: 'Stats Page',
 };
